@@ -57,7 +57,7 @@ const CriadorDeSala = () => {
     };
 
     // Enviar os dados para o back-end
-    fetch("http://192.168.0.34:8080/salas", {
+    fetch("http://10.110.12.19:8080/salas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -67,6 +67,8 @@ const CriadorDeSala = () => {
       .then((response) => {
         if (response.ok) {
           Alert.alert("Sucesso", "Sala adicionada com sucesso");
+          setImagemSelecionada(null);
+          setNomeSala("");
         } else {
           throw new Error("Erro ao adicionar sala");
         }
@@ -94,7 +96,7 @@ const CriadorDeSala = () => {
       formData.append("file", blob);
 
       const uploadResponse = await axios.post(
-        `http://192.168.0.34:8080/salas/upload/${nomeDaSala}`,
+        `http://10.110.12.19:8080/salas/upload/${nomeDaSala}`,
         formData,
         {
           headers: {
@@ -133,7 +135,7 @@ const CriadorDeSala = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 40, fontWeight: "bold", marginTop: 20 }}>
+      <Text style={{ fontSize: 24, fontWeight: "bold", marginTop: 20 }}>
         Criar sala
       </Text>
 
@@ -146,7 +148,7 @@ const CriadorDeSala = () => {
         }}
       >
         {imagemSelecionada && (
-          <Text style={{ fontSize: 18, fontStyle: 'italic', color: 'black', marginBottom: 10 }}>Prévia</Text>
+          <Text style={{ fontSize: 14, fontStyle: 'italic', color: 'black', marginBottom: 5 }}>Prévia</Text>
         )}
         {imagemSelecionada && (
           <Image
@@ -165,10 +167,10 @@ const CriadorDeSala = () => {
           onChangeText={(text) => setNomeSala(text)}
           style={{
             backgroundColor: 'white',
-            height: 40,
+            height: 30,
             width: "40%",
             borderWidth: 2,
-            fontSize: 25,
+            fontSize: 18,
             margin: 20,
           }}
         />
@@ -176,7 +178,7 @@ const CriadorDeSala = () => {
         <Picker
           selectedValue={valorPicker}
           onValueChange={handleChange}
-          style={{ height: 40, width: "30%", marginBottom: 20, fontSize: 25 }}
+          style={{ height: 30, width: "30%", marginBottom: 20, fontSize: 18 }}
         >
           <Picker.Item label="Área 1 (inferior)" value="Área 1 (inferior)" />
           <Picker.Item label="Área 1 (superior)" value="Área 1 (superior)" />
@@ -213,22 +215,22 @@ const styles = StyleSheet.create({
   },
   image: {
     borderWidth: 2,
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
     marginBottom: 20,
   },
   button: {
     backgroundColor: "red",
     borderRadius: 5,
     marginTop: 10,
-    width: "13%",
+    width: "16%",
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
-    padding: 10,
+    padding: 5,
   },
   messageContainer: {
     position: "absolute",
