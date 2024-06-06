@@ -54,10 +54,11 @@ const CriadorDeSala = () => {
     const novaSala = {
       nomeSala: nomeSala,
       posicaoSala: valorPicker,
+      url_imagem: nomeSala + ".png",
     };
 
     // Enviar os dados para o back-end
-    fetch("http://10.110.12.19:8080/salas", {
+    fetch("https://appback.azurewebsites.net/salas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
